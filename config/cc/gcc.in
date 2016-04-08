@@ -98,6 +98,7 @@ config CC_GCC_V_linaro_5_2
     prompt "linaro-5.2-2015.11-2"
     depends on CC_GCC_SHOW_LINARO
     select CC_GCC_5
+    select CC_GCC_5_3_or_later
 
 config CC_GCC_V_linaro_4_9
     bool
