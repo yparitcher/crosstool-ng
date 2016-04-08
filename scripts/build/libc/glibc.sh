@@ -83,7 +83,7 @@ do_libc_extract() {
 
         if [ -n "$conf_file" ]; then
             CT_DoExecLog DEBUG sed -i \
-                's/\bAC_CHECK_PROG_VER/CT_NG_AC_CHECK_PROG_VER/g' \
+                's/\<AC_CHECK_PROG_VER/CT_NG_AC_CHECK_PROG_VER/g' \
                 $conf_file
         fi
 
