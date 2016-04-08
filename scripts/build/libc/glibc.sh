@@ -87,7 +87,7 @@ do_libc_extract() {
                 $conf_file
         fi
 
-        CT_DoExecLog DEBUG autoconf
+        CT_DoExecLog DEBUG autoconf -f
     fi
 
     # Extract the add-ons if => 2.17
