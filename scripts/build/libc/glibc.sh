@@ -66,7 +66,30 @@ do_libc_extract() {
     # Attempt CT_PATCH only if NOT custom
     CT_Patch nochdir "${CT_LIBC}" "${CT_LIBC_VERSION}"
 
-    # Extract the add-opns if => 2.17
+    if [ -f aclocal.m4 ]; then
+        local conf_file
+
+        # We need to have this in a seperate function
+        # otherwise CT_DoExecLog will append extra stuff
+        # in the appended string.
+        CT_DoExecLog DEBUG do_libc_patch_aclocal.m4
+
+        if [ -f configure.in ]; then
+            conf_file=configure.in
+        elif [ -f configure.ac ]; then
+            conf_file=configure.ac
+        fi
+
+        if [ -n "$conf_file" ]; then
+            CT_DoExecLog DEBUG sed -i \
+                's/AC_CHECK_PROG_VER/CT_NG_AC_CHECK_PROG_VER/g' \
+                $conf_file
+        fi
+
+        CT_DoExecLog DEBUG autoconf
+    fi
+
+    # Extract the add-ons if => 2.17
     if [ "${CT_LIBC_GLIBC_2_17_or_later}" != "y" ]; then
         for addon in $(do_libc_add_ons_list " "); do
             # If the addon was bundled with the main archive, we do not
@@ -126,6 +149,24 @@ do_libc() {
 
 do_libc_post_cc() {
     :
+}
+
+do_libc_patch_aclocal.m4() {
+    cat << EOF >> aclocal.m4
+
+AC_DEFUN([CT_NG_AC_CHECK_PROG_VER],
+[AC_CHECK_PROGS([\$1], [\$2])
+if test -z "[\$]\$1"; then
+  ac_verc_fail=yes
+else
+  ac_verc_fail=no
+fi
+ifelse([\$6],,,
+[if test \$ac_verc_fail = yes; then
+  \$6
+fi])
+])
+EOF
 }
 
 # This backend builds the C library once for each multilib
