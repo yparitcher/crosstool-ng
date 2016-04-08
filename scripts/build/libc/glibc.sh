@@ -43,7 +43,8 @@ do_libc_get() {
         if ! CT_GetFile "glibc-${addon}-${CT_LIBC_VERSION}"                      \
                http://mirrors.kernel.org/sourceware/glibc                        \
                {http,ftp,https}://ftp.gnu.org/gnu/glibc                          \
-               ftp://{sourceware.org,gcc.gnu.org}/pub/glibc/{releases,snapshots}
+               ftp://{sourceware.org,gcc.gnu.org}/pub/glibc/{releases,snapshots} \
+               http://files.ak-team.com/niluje/gentoo
         then
             # Some add-ons are bundled with glibc, others are
             # bundled in their own tarball. Eg. NPTL is internal,
