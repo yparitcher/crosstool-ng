@@ -1,0 +1,63 @@
+diff --git a/include/shlib-compat.h b/include/shlib-compat.h
+index 79246df..e437893 100644
+--- a/include/shlib-compat.h
++++ b/include/shlib-compat.h
+@@ -92,4 +92,14 @@
+ #endif
+ 
+ 
++# ifdef LINK_OBSOLETE_RPC
++/* Export the symbol for both static and dynamic linking.  */
++#  define libc_sunrpc_symbol(name, aliasname, version) \
++  strong_alias (name, aliasname)
++# else
++/* Export the symbol only for shared-library compatibility.  */
++#  define libc_sunrpc_symbol(name, aliasname, version) \
++  compat_symbol (libc, name, aliasname, version);
++# endif
++
+ #endif	/* shlib-compat.h */
+diff --git a/sunrpc/svc_simple.c b/sunrpc/svc_simple.c
+index b8ba4ab..baa177e 100644
+--- a/sunrpc/svc_simple.c
++++ b/sunrpc/svc_simple.c
+@@ -43,6 +43,7 @@
+ 
+ #include <wchar.h>
+ #include <libio/iolibio.h>
++#include <shlib-compat.h>
+ 
+ struct proglst_
+   {
+@@ -121,7 +122,9 @@ __registerrpc (u_long prognum, u_long versnum, u_long procnum,
+   free (buf);
+   return -1;
+ }
+-compat_symbol (libc, __registerrpc, registerrpc, GLIBC_2_0);
++
++libc_sunrpc_symbol (__registerrpc, registerrpc, GLIBC_2_0)
++
+ 
+ static void
+ universal (struct svc_req *rqstp, SVCXPRT *transp_l)
+diff --git a/sunrpc/xcrypt.c b/sunrpc/xcrypt.c
+index 2e53f2d..da7c4e6 100644
+--- a/sunrpc/xcrypt.c
++++ b/sunrpc/xcrypt.c
+@@ -47,6 +47,7 @@ static char sccsid[] = "@(#)xcrypt.c 1.3 89/03/24 Copyr 1986 Sun Micro";
+ #include <string.h>
+ #include <sys/types.h>
+ #include <rpc/des_crypt.h>
++#include <shlib-compat.h>
+ 
+ static const char hex[16] =
+ {
+@@ -89,7 +90,7 @@ passwd2des_internal (char *pw, char *key)
+ 
+ #ifdef _LIBC
+ libc_hidden_def (passwd2des_internal)
+-compat_symbol (libc, passwd2des_internal, passwd2des, GLIBC_2_1);
++libc_sunrpc_symbol(passwd2des_internal, passwd2des, GLIBC_2_1)
+ #else
+ void passwd2des (char *pw, char *key)
+ {
