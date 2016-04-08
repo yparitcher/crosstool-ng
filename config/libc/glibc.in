@@ -124,6 +124,7 @@ config LIBC_GLIBC_V_2_5_1
     bool
     prompt "2.5.1"
     select LIBC_GLIBC_PORTS_EXTERNAL
+    select LIBC_SUPPORT_THREADS_LT
 
 endchoice
 
