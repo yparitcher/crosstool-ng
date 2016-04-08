@@ -6,6 +6,12 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config ISL_V_0_16_1
+    bool
+    prompt "0.16.1"
+    depends on CC_GCC_5_3_or_later
+    select ISL_V_0_15_or_later
+
 config ISL_V_0_15
     bool
     prompt "0.15"
@@ -53,6 +59,7 @@ config ISL_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "0.16.1" if ISL_V_0_16_1
     default "0.15" if ISL_V_0_15
     default "0.14.1" if ISL_V_0_14_1
     default "0.14" if ISL_V_0_14
