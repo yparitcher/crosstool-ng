@@ -1,38 +1,12 @@
-diff --git a/ChangeLog b/ChangeLog
-index bb783ed..27c860f 100644
---- a/ChangeLog
-+++ b/ChangeLog
-@@ -50,7 +50,7 @@
- 	* elf/tst-relsort1mod2.c: New file.
- 
- 2014-01-04  Maxim Kuvyrkov  <maxim@kugelworks.com>
--	    Ondřej Bílka  <neleai@seznam.cz>
-+	    Ondej Blka  <neleai@seznam.cz>
- 
- 	[BZ #15073]
- 	* malloc/malloc.c (_int_free): Perform sanity check only if we
-@@ -558,7 +558,7 @@
- 	* stdlib/strtod_l.c (____STRTOF_INTERNAL): Clear lowest limb of
- 	numerator after shifting it by one limb.
- 
--2011-12-19  Rafael Ávila de Espíndola  <rafael.espindola@gmail.com>
-+2011-12-19  Rafael vila de Espndola  <rafael.espindola@gmail.com>
- 
- 	* sysdeps/x86_64/fpu/bits/fenv.h (feraiseexcept): Define it only
- 	under [__USE_EXTERN_INLINES].
 diff --git a/aclocal.m4 b/aclocal.m4
-index c2f6cea..4eedc7c 100644
+index c2f6cea..7543bba 100644
 --- a/aclocal.m4
 +++ b/aclocal.m4
-@@ -115,8 +115,16 @@ AC_CACHE_CHECK(whether $LD is GNU ld, libc_cv_prog_ld_gnu,
- gnu_ld=$libc_cv_prog_ld_gnu
- ])
- 
--dnl Test a compiler option or options with an empty input file.
--dnl LIBC_TRY_CC_OPTION([options], [action-if-true], [action-if-false])
--AC_DEFUN([LIBC_TRY_CC_OPTION],
--[AS_IF([AC_TRY_COMMAND([${CC-cc} $1 -xc /dev/null -S -o /dev/null])],
--	[$2], [$3])])
+@@ -120,3 +120,17 @@ dnl LIBC_TRY_CC_OPTION([options], [action-if-true], [action-if-false])
+ AC_DEFUN([LIBC_TRY_CC_OPTION],
+ [AS_IF([AC_TRY_COMMAND([${CC-cc} $1 -xc /dev/null -S -o /dev/null])],
+ 	[$2], [$3])])
++
 +dnl Run a static link test with -nostdlib -nostartfiles.
 +dnl LIBC_TRY_LINK_STATIC([code], [action-if-true], [action-if-false])
 +AC_DEFUN([LIBC_TRY_LINK_STATIC],
