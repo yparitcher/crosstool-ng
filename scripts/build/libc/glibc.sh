@@ -76,15 +76,15 @@ do_libc_extract() {
         CT_DoExecLog DEBUG do_libc_patch_aclocal.m4
 
         if [ -f configure.in ]; then
-            conf_file=configure.in
+            conf_file="configure.in"
         elif [ -f configure.ac ]; then
-            conf_file=configure.ac
+            conf_file="configure.ac"
         fi
 
-        if [ -n "$conf_file" ]; then
+        if [ -n "${conf_file}" ]; then
             CT_DoExecLog DEBUG sed -re \
-		's/\<(AC_CHECK_PROG_VER)/CT_NG_\1/g' \
-                -i $conf_file
+                's/\<(AC_CHECK_PROG_VER)/CT_NG_\1/g' \
+                -i ${conf_file}
         fi
 
         CT_DoExecLog DEBUG autoconf -f
@@ -170,7 +170,9 @@ fi])
 EOF
 
     # And make sure the autoconf sanity checks won't bother us...
-    sed -re "s/(m4_define\(\[GLIBC_AUTOCONF_VERSION\], \[)(2.68)(\]\))/\1$(autoconf --version | head -n 1 | cut -d " " -f 4)\3/" -i aclocal.m4
+    sed -re \
+        "s/(m4_define\(\[GLIBC_AUTOCONF_VERSION\], \[)(2.68)(\]\))/\1$(autoconf --version | head -n 1 | cut -d " " -f 4)\3/" \
+        -i aclocal.m4
 }
 
 # This backend builds the C library once for each multilib
