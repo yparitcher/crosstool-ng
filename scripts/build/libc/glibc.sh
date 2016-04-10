@@ -171,7 +171,7 @@ EOF
 
     # And make sure the autoconf sanity checks won't bother us...
     sed -re \
-        "s/(m4_define\(\[GLIBC_AUTOCONF_VERSION\], \[)(2.68)(\]\))/\1$(autoconf --version | head -n 1 | cut -d " " -f 4)\3/" \
+        "s/(m4_define\(\[GLIBC_AUTOCONF_VERSION\], \[)([[:digit:]\.]*)(\]\))/\1$(autoconf --version | head -n 1 | cut -d " " -f 4)\3/" \
         -i aclocal.m4
 }
 
