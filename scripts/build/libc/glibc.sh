@@ -168,6 +168,9 @@ ifelse([\$6],,,
 fi])
 ])
 EOF
+
+    # And make sure the autoconf sanity checks won't bother us...
+    sed -re "s/(m4_define\(\[GLIBC_AUTOCONF_VERSION\], \[)(2.68)(\]\))/\1$(autoconf --version | head -n 1 | cut -d " " -f 4)\3/" -i aclocal.m4
 }
 
 # This backend builds the C library once for each multilib
