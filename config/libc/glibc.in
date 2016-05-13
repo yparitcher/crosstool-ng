@@ -74,7 +74,7 @@ choice
 config LIBC_GLIBC_V_2_23
     bool
     prompt "2.23"
-    select LIBC_GLIBC_2_20_or_later
+    select LIBC_GLIBC_2_23_or_later
 
 config LIBC_GLIBC_V_2_22
     bool
@@ -129,6 +129,11 @@ config LIBC_GLIBC_V_2_5_1
 endchoice
 
 endif # ! LIBC_GLIBC_CUSTOM
+
+# Checked by SPARC build: SPARCv8 is dropped in 2.23.
+config LIBC_GLIBC_2_23_or_later
+    select LIBC_GLIBC_2_20_or_later
+    bool
 
 # DeMark 2.20 as no longer needs to set NPTL as an addon.
 # It is no longer possible to build glibc without pthread!
