@@ -67,13 +67,6 @@ do_libc_backend() {
         *)  CT_Abort "Unsupported (or unset) libc_mode='${libc_mode}'";;
     esac
 
-    # From buildroot:
-    # gcc constant folding bug with weak aliases workaround
-    # See http://www.openwall.com/lists/musl/2014/05/15/1
-    if [ "${CT_CC_GCC_4_9_or_later}" = "y" ]; then
-        extra_cflags+=("-fno-toplevel-reorder")
-    fi
-
     if [ "${CT_LIBC_MUSL_DEBUG}" = "y" ]; then
         extra_config+=("--enable-debug")
     fi
