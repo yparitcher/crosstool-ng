@@ -91,7 +91,6 @@ do_libc_backend() {
         --host="${CT_TARGET}"       \
         --target="${CT_TARGET}"     \
         --prefix="/usr"             \
-        --disable-gcc-wrapper       \
         "${extra_config[@]}"
 
     if [ "${libc_headers}" = "y" ]; then
