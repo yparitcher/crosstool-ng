@@ -75,7 +75,7 @@ choice
 
 config CC_GCC_V_linaro_5_3_S
     bool
-    prompt "linaro-snapshot-5.3-2016.04"
+    prompt "linaro-snapshot-5.3-2016.05"
     depends on CC_GCC_SHOW_LINARO
     select CC_GCC_5
     select CC_GCC_5_3_or_later
@@ -286,7 +286,7 @@ config CC_GCC_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
-    default "linaro-snapshot-5.3-2016.04" if CC_GCC_V_linaro_5_3_S
+    default "linaro-snapshot-5.3-2016.05" if CC_GCC_V_linaro_5_3_S
     default "linaro-5.3-2016.02" if CC_GCC_V_linaro_5_3
     default "5.3.0" if CC_GCC_V_5_3_0
     default "linaro-5.2-2015.11-2" if CC_GCC_V_linaro_5_2
