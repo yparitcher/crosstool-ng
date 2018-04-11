@@ -80,13 +80,6 @@ do_libc_backend_once() {
 
     extra_cflags=( ${multi_flags} )
 
-    # From buildroot:
-    # gcc constant folding bug with weak aliases workaround
-    # See http://www.openwall.com/lists/musl/2014/05/15/1
-    if [ "${CT_CC_GCC_4_9_or_later}" = "y" ]; then
-        extra_cflags+=("-fno-toplevel-reorder")
-    fi
-
     if [ "${CT_LIBC_MUSL_DEBUG}" = "y" ]; then
         extra_config+=("--enable-debug")
     fi
@@ -120,7 +113,6 @@ do_libc_backend_once() {
         --target="${multi_target}"                        \
         --prefix="/usr"                                   \
         --libdir="${multilib_dir}"                        \
-        --disable-gcc-wrapper                             \
         "${extra_config[@]}"
 
     if [ "${libc_mode}" = "startfiles" ]; then
