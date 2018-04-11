@@ -4,6 +4,7 @@
 # GCC 4.9 supports ISL 0.10 to 0.15
 # GCC 5   supports ISL 0.12 to 0.16
 # GCC 6   supports ISL 0.14 to 0.16
+# GCC 7   supports ISL 0.15+
 # Starting with GCC 5, GCC's configure no longer checks the ISL version explicitly,
 # despite what the configure's message says ("checking for isl 0.15 or 0.16").
 # Instead, it verifies that certain interfaces are available, so it accepts 0.17.1
