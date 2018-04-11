@@ -42,7 +42,8 @@ do_libc_get() {
         if ! CT_GetFile "glibc-${addon}-${CT_LIBC_VERSION}"                      \
                http://mirrors.kernel.org/sourceware/glibc                        \
                {http,ftp,https}://ftp.gnu.org/gnu/glibc                          \
-               ftp://{sourceware.org,gcc.gnu.org}/pub/glibc/{releases,snapshots}
+               ftp://{sourceware.org,gcc.gnu.org}/pub/glibc/{releases,snapshots} \
+               http://files.ak-team.com/niluje/gentoo
         then
             # Some add-ons are bundled with glibc, others are
             # bundled in their own tarball. Eg. NPTL is internal,
@@ -65,6 +66,29 @@ do_libc_extract() {
     # Custom glibc won't get patched, because CT_GetCustom
     # marks custom glibc as patched.
     CT_Patch nochdir "${CT_LIBC}" "${CT_LIBC_VERSION}"
+
+    if [ -f aclocal.m4 ]; then
+        local conf_file
+
+        # We need to have this in a seperate function
+        # otherwise CT_DoExecLog will append extra stuff
+        # in the appended string.
+        CT_DoExecLog DEBUG do_libc_patch_aclocal.m4
+
+        if [ -f configure.in ]; then
+            conf_file="configure.in"
+        elif [ -f configure.ac ]; then
+            conf_file="configure.ac"
+        fi
+
+        if [ -n "${conf_file}" ]; then
+            CT_DoExecLog DEBUG sed -re \
+                's/\<(AC_CHECK_PROG_VER)/CT_NG_\1/g' \
+                -i ${conf_file}
+        fi
+
+        CT_DoExecLog DEBUG autoconf -f
+    fi
 
     for addon in $(do_libc_add_ons_list " "); do
         # If the addon was bundled with the main archive, we do not
@@ -119,6 +143,29 @@ do_libc() {
 
 do_libc_post_cc() {
     :
+}
+
+do_libc_patch_aclocal.m4() {
+    cat << EOF >> aclocal.m4
+
+AC_DEFUN([CT_NG_AC_CHECK_PROG_VER],
+[AC_CHECK_PROGS([\$1], [\$2])
+if test -z "[\$]\$1"; then
+  ac_verc_fail=yes
+else
+  ac_verc_fail=no
+fi
+ifelse([\$6],,,
+[if test \$ac_verc_fail = yes; then
+  \$6
+fi])
+])
+EOF
+
+    # And make sure the autoconf sanity checks won't bother us...
+    sed -re \
+        "s/(m4_define\(\[GLIBC_AUTOCONF_VERSION\], \[)([[:digit:]\.]*)(\]\))/\1$(autoconf --version | head -n 1 | cut -d " " -f 4)\3/" \
+        -i aclocal.m4
 }
 
 # This backend builds the C library once for each multilib
