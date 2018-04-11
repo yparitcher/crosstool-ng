@@ -4,23 +4,24 @@ Date: Thu, 17 Jan 2013 18:33:40 +0900
 Subject: [PATCH] Fix Woe32 link errors when compiling with -O0.
 
 ---
- gettext-tools/src/Makefile.am                  | 24 ++++++++++++++++++++++--
- gettext-tools/src/color.c                      |  1 +
- gettext-tools/woe32dll/c++color.cc             |  1 +
- gettext-tools/woe32dll/c++file-ostream.cc      |  2 ++
- gettext-tools/woe32dll/c++html-ostream.cc      |  1 +
- gettext-tools/woe32dll/c++styled-ostream.cc    |  1 +
- gettext-tools/woe32dll/c++term-ostream.cc      |  1 +
- gettext-tools/woe32dll/c++write-catalog.cc     |  1 +
- gettext-tools/woe32dll/c++write-po.cc          |  1 +
- gettext-tools/woe32dll/c++write-properties.cc  |  1 +
- gettext-tools/woe32dll/c++write-stringtable.cc |  1 +
- gnulib-local/modules/file-ostream              |  4 ++++
- gnulib-local/modules/html-ostream              |  4 ++++
- gnulib-local/modules/ostream                   |  4 ++++
- gnulib-local/modules/styled-ostream            |  4 ++++
- gnulib-local/modules/term-ostream              |  4 ++++
- 16 files changed, 53 insertions(+), 2 deletions(-)
+ gettext-tools/src/Makefile.am                  |   18 +++-
+ gettext-tools/src/Makefile.in                  |  108 ++++++++++++++++++-------
+ gettext-tools/src/color.c                      |    1 
+ gettext-tools/woe32dll/c++color.cc             |    1 
+ gettext-tools/woe32dll/c++file-ostream.cc      |    2 
+ gettext-tools/woe32dll/c++html-ostream.cc      |    1 
+ gettext-tools/woe32dll/c++styled-ostream.cc    |    1 
+ gettext-tools/woe32dll/c++term-ostream.cc      |    1 
+ gettext-tools/woe32dll/c++write-catalog.cc     |    1 
+ gettext-tools/woe32dll/c++write-po.cc          |    1 
+ gettext-tools/woe32dll/c++write-properties.cc  |    1 
+ gettext-tools/woe32dll/c++write-stringtable.cc |    1 
+ gnulib-local/modules/file-ostream              |    4 
+ gnulib-local/modules/html-ostream              |    4 
+ gnulib-local/modules/ostream                   |    4 
+ gnulib-local/modules/styled-ostream            |    4 
+ gnulib-local/modules/term-ostream              |    4 
+ 17 files changed, 126 insertions(+), 31 deletions(-)
  create mode 100644 gettext-tools/woe32dll/c++color.cc
  create mode 100644 gettext-tools/woe32dll/c++file-ostream.cc
  create mode 100644 gettext-tools/woe32dll/c++html-ostream.cc
@@ -33,10 +34,9 @@ Subject: [PATCH] Fix Woe32 link errors when compiling with -O0.
 
 Additional fix (COLOR_SOURCE) by Ray Donnelly <mingw.android@gmail.com>
 
-diff -urN a/gettext-tools/src/Makefile.am b/gettext-tools/src/Makefile.am
---- a/gettext-tools/src/Makefile.am	2015-09-11 01:54:21.000000000 +0100
-+++ b/gettext-tools/src/Makefile.am	2015-10-22 00:41:49.601786700 +0100
-@@ -145,10 +145,26 @@
+--- a/gettext-tools/src/Makefile.am
++++ b/gettext-tools/src/Makefile.am
+@@ -146,10 +146,26 @@
    format-lua.c \
    format-javascript.c
  
@@ -64,10 +64,9 @@ diff -urN a/gettext-tools/src/Makefile.am b/gettext-tools/src/Makefile.am
  msgl-ascii.c msgl-iconv.c msgl-equal.c msgl-cat.c msgl-header.c msgl-english.c \
  msgl-check.c file-list.c msgl-charset.c po-time.c plural-exp.c plural-eval.c \
  plural-table.c quote.h sentence.h sentence.c \
-diff -urN a/gettext-tools/src/Makefile.in b/gettext-tools/src/Makefile.in
---- a/gettext-tools/src/Makefile.in	2015-09-11 04:05:11.000000000 +0100
-+++ b/gettext-tools/src/Makefile.in	2015-10-22 00:42:26.253852000 +0100
-@@ -387,19 +387,22 @@
+--- a/gettext-tools/src/Makefile.in
++++ b/gettext-tools/src/Makefile.in
+@@ -402,19 +402,22 @@
  am__libgettextsrc_la_SOURCES_DIST = message.c po-error.c po-xerror.c \
  	read-catalog-abstract.c po-lex.c po-gram-gen.y po-charset.c \
  	read-po.c read-properties.c read-stringtable.c open-catalog.c \
@@ -103,7 +102,7 @@ diff -urN a/gettext-tools/src/Makefile.in b/gettext-tools/src/Makefile.in
  	format-boost.c format-lua.c format-javascript.c \
  	../woe32dll/c++format.cc read-desktop.c locating-rule.c its.c \
  	../woe32dll/gettextsrc-exports.c
-@@ -413,7 +416,18 @@
+@@ -428,7 +431,18 @@
  	libgettextsrc_la-open-catalog.lo libgettextsrc_la-dir-list.lo \
  	libgettextsrc_la-str-list.lo
  am__dirstamp = $(am__leading_dot)dirstamp
@@ -123,7 +122,7 @@ diff -urN a/gettext-tools/src/Makefile.in b/gettext-tools/src/Makefile.in
  @WOE32DLL_FALSE@	libgettextsrc_la-format-c.lo \
  @WOE32DLL_FALSE@	libgettextsrc_la-format-sh.lo \
  @WOE32DLL_FALSE@	libgettextsrc_la-format-python.lo \
-@@ -440,7 +454,7 @@
+@@ -455,7 +469,7 @@
  @WOE32DLL_FALSE@	libgettextsrc_la-format-boost.lo \
  @WOE32DLL_FALSE@	libgettextsrc_la-format-lua.lo \
  @WOE32DLL_FALSE@	libgettextsrc_la-format-javascript.lo
@@ -132,7 +131,7 @@ diff -urN a/gettext-tools/src/Makefile.in b/gettext-tools/src/Makefile.in
  @WOE32DLL_TRUE@	../woe32dll/libgettextsrc_la-c++format.lo \
  @WOE32DLL_TRUE@	libgettextsrc_la-format-c.lo \
  @WOE32DLL_TRUE@	libgettextsrc_la-format-sh.lo \
-@@ -468,13 +482,10 @@
+@@ -483,13 +497,10 @@
  @WOE32DLL_TRUE@	libgettextsrc_la-format-boost.lo \
  @WOE32DLL_TRUE@	libgettextsrc_la-format-lua.lo \
  @WOE32DLL_TRUE@	libgettextsrc_la-format-javascript.lo
@@ -149,19 +148,19 @@ diff -urN a/gettext-tools/src/Makefile.in b/gettext-tools/src/Makefile.in
  	libgettextsrc_la-msgl-iconv.lo libgettextsrc_la-msgl-equal.lo \
  	libgettextsrc_la-msgl-cat.lo libgettextsrc_la-msgl-header.lo \
  	libgettextsrc_la-msgl-english.lo \
-@@ -482,9 +493,9 @@
+@@ -497,9 +508,9 @@
  	libgettextsrc_la-msgl-charset.lo libgettextsrc_la-po-time.lo \
  	libgettextsrc_la-plural-exp.lo libgettextsrc_la-plural-eval.lo \
  	libgettextsrc_la-plural-table.lo libgettextsrc_la-sentence.lo \
 -	$(am__objects_2) libgettextsrc_la-read-desktop.lo \
 +	$(am__objects_4) libgettextsrc_la-read-desktop.lo \
-	libgettextsrc_la-locating-rule.lo libgettextsrc_la-its.lo \
+ 	libgettextsrc_la-locating-rule.lo libgettextsrc_la-its.lo \
 -	$(am__objects_3)
 +	$(am__objects_5)
  libgettextsrc_la_OBJECTS = $(am_libgettextsrc_la_OBJECTS)
  PROGRAMS = $(bin_PROGRAMS) $(noinst_PROGRAMS)
  am_cldr_plurals_OBJECTS = cldr_plurals-cldr-plural.$(OBJEXT) \
-@@ -1975,15 +1986,28 @@
+@@ -2250,15 +2261,28 @@
  @WOE32DLL_TRUE@	format-qt.c format-qt-plural.c format-kde.c \
  @WOE32DLL_TRUE@	format-kde-kuit.c format-boost.c format-lua.c \
  @WOE32DLL_TRUE@	format-javascript.c
@@ -197,7 +196,7 @@ diff -urN a/gettext-tools/src/Makefile.in b/gettext-tools/src/Makefile.in
  
  # msggrep needs pattern matching.
  LIBGREP = ../libgrep/libgrep.a
-@@ -2345,6 +2370,15 @@
+@@ -2620,6 +2644,15 @@
  ../woe32dll/$(am__dirstamp):
  	@$(MKDIR_P) ../woe32dll
  	@: > ../woe32dll/$(am__dirstamp)
@@ -213,7 +212,7 @@ diff -urN a/gettext-tools/src/Makefile.in b/gettext-tools/src/Makefile.in
  ../woe32dll/libgettextsrc_la-c++format.lo:  \
  	../woe32dll/$(am__dirstamp)
  ../woe32dll/libgettextsrc_la-gettextsrc-exports.lo:  \
-@@ -3156,6 +3190,21 @@
+@@ -3422,6 +3455,21 @@
  .cc.lo:
  	$(AM_V_CXX)$(LTCXXCOMPILE) -c -o $@ $<
  
@@ -235,9 +234,8 @@ diff -urN a/gettext-tools/src/Makefile.in b/gettext-tools/src/Makefile.in
  ../woe32dll/libgettextsrc_la-c++format.lo: ../woe32dll/c++format.cc
  	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libgettextsrc_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o ../woe32dll/libgettextsrc_la-c++format.lo `test -f '../woe32dll/c++format.cc' || echo '$(srcdir)/'`../woe32dll/c++format.cc
  
-diff -urN a/gettext-tools/src/color.c b/gettext-tools/src/color.c
---- a/gettext-tools/src/color.c	2015-08-21 08:18:27.000000000 +0100
-+++ b/gettext-tools/src/color.c	2015-10-22 00:31:33.326659600 +0100
+--- a/gettext-tools/src/color.c
++++ b/gettext-tools/src/color.c
 @@ -28,6 +28,7 @@
  #include <sys/types.h>
  #include <sys/stat.h>
@@ -246,55 +244,45 @@ diff -urN a/gettext-tools/src/color.c b/gettext-tools/src/color.c
  #include "term-ostream.h"
  #include "xalloc.h"
  #include "relocatable.h"
-diff -urN a/gettext-tools/woe32dll/c++color.cc b/gettext-tools/woe32dll/c++color.cc
---- a/gettext-tools/woe32dll/c++color.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++color.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++color.cc
 @@ -0,0 +1 @@
 +#include "../src/color.c"
-diff -urN a/gettext-tools/woe32dll/c++file-ostream.cc b/gettext-tools/woe32dll/c++file-ostream.cc
---- a/gettext-tools/woe32dll/c++file-ostream.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++file-ostream.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++file-ostream.cc
 @@ -0,0 +1,2 @@
 +#include "../gnulib-lib/file-ostream.c"
 +
-diff -urN a/gettext-tools/woe32dll/c++html-ostream.cc b/gettext-tools/woe32dll/c++html-ostream.cc
---- a/gettext-tools/woe32dll/c++html-ostream.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++html-ostream.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++html-ostream.cc
 @@ -0,0 +1 @@
 +#include "../gnulib-lib/html-ostream.c"
-diff -urN a/gettext-tools/woe32dll/c++styled-ostream.cc b/gettext-tools/woe32dll/c++styled-ostream.cc
---- a/gettext-tools/woe32dll/c++styled-ostream.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++styled-ostream.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++styled-ostream.cc
 @@ -0,0 +1 @@
 +#include "../gnulib-lib/styled-ostream.c"
-diff -urN a/gettext-tools/woe32dll/c++term-ostream.cc b/gettext-tools/woe32dll/c++term-ostream.cc
---- a/gettext-tools/woe32dll/c++term-ostream.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++term-ostream.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++term-ostream.cc
 @@ -0,0 +1 @@
 +#include "../gnulib-lib/term-ostream.c"
-diff -urN a/gettext-tools/woe32dll/c++write-catalog.cc b/gettext-tools/woe32dll/c++write-catalog.cc
---- a/gettext-tools/woe32dll/c++write-catalog.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++write-catalog.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++write-catalog.cc
 @@ -0,0 +1 @@
 +#include "../src/write-catalog.c"
-diff -urN a/gettext-tools/woe32dll/c++write-po.cc b/gettext-tools/woe32dll/c++write-po.cc
---- a/gettext-tools/woe32dll/c++write-po.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++write-po.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++write-po.cc
 @@ -0,0 +1 @@
 +#include "../src/write-po.c"
-diff -urN a/gettext-tools/woe32dll/c++write-properties.cc b/gettext-tools/woe32dll/c++write-properties.cc
---- a/gettext-tools/woe32dll/c++write-properties.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++write-properties.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++write-properties.cc
 @@ -0,0 +1 @@
 +#include "../src/write-properties.c"
-diff -urN a/gettext-tools/woe32dll/c++write-stringtable.cc b/gettext-tools/woe32dll/c++write-stringtable.cc
---- a/gettext-tools/woe32dll/c++write-stringtable.cc	1970-01-01 01:00:00.000000000 +0100
-+++ b/gettext-tools/woe32dll/c++write-stringtable.cc	2015-10-22 00:31:33.326659600 +0100
+--- /dev/null
++++ b/gettext-tools/woe32dll/c++write-stringtable.cc
 @@ -0,0 +1 @@
 +#include "../src/write-stringtable.c"
-diff -urN a/gnulib-local/modules/file-ostream b/gnulib-local/modules/file-ostream
---- a/gnulib-local/modules/file-ostream	2015-08-21 06:48:27.000000000 +0100
-+++ b/gnulib-local/modules/file-ostream	2015-10-22 00:31:33.326659600 +0100
+--- a/gnulib-local/modules/file-ostream
++++ b/gnulib-local/modules/file-ostream
 @@ -12,7 +12,11 @@
  configure.ac:
  
@@ -307,9 +295,8 @@ diff -urN a/gnulib-local/modules/file-ostream b/gnulib-local/modules/file-ostrea
  # This is a Makefile rule that generates multiple files at once; see the
  # automake documentation, node "Multiple Outputs", for details.
  file-ostream.h : $(top_srcdir)/build-aux/moopp file-ostream.oo.h file-ostream.oo.c ostream.oo.h
-diff -urN a/gnulib-local/modules/html-ostream b/gnulib-local/modules/html-ostream
---- a/gnulib-local/modules/html-ostream	2015-08-21 06:48:27.000000000 +0100
-+++ b/gnulib-local/modules/html-ostream	2015-10-22 00:31:33.326659600 +0100
+--- a/gnulib-local/modules/html-ostream
++++ b/gnulib-local/modules/html-ostream
 @@ -15,7 +15,11 @@
  configure.ac:
  
@@ -322,9 +309,8 @@ diff -urN a/gnulib-local/modules/html-ostream b/gnulib-local/modules/html-ostrea
  # This is a Makefile rule that generates multiple files at once; see the
  # automake documentation, node "Multiple Outputs", for details.
  html-ostream.h : $(top_srcdir)/build-aux/moopp html-ostream.oo.h html-ostream.oo.c ostream.oo.h
-diff -urN a/gnulib-local/modules/ostream b/gnulib-local/modules/ostream
---- a/gnulib-local/modules/ostream	2015-08-21 06:48:27.000000000 +0100
-+++ b/gnulib-local/modules/ostream	2015-10-22 00:31:33.342259600 +0100
+--- a/gnulib-local/modules/ostream
++++ b/gnulib-local/modules/ostream
 @@ -11,7 +11,11 @@
  configure.ac:
  
@@ -337,9 +323,8 @@ diff -urN a/gnulib-local/modules/ostream b/gnulib-local/modules/ostream
  # This is a Makefile rule that generates multiple files at once; see the
  # automake documentation, node "Multiple Outputs", for details.
  ostream.h : $(top_srcdir)/build-aux/moopp ostream.oo.h ostream.oo.c
-diff -urN a/gnulib-local/modules/styled-ostream b/gnulib-local/modules/styled-ostream
---- a/gnulib-local/modules/styled-ostream	2015-08-21 06:48:27.000000000 +0100
-+++ b/gnulib-local/modules/styled-ostream	2015-10-22 00:31:33.342259600 +0100
+--- a/gnulib-local/modules/styled-ostream
++++ b/gnulib-local/modules/styled-ostream
 @@ -11,7 +11,11 @@
  configure.ac:
  
@@ -352,9 +337,8 @@ diff -urN a/gnulib-local/modules/styled-ostream b/gnulib-local/modules/styled-os
  # This is a Makefile rule that generates multiple files at once; see the
  # automake documentation, node "Multiple Outputs", for details.
  styled-ostream.h : $(top_srcdir)/build-aux/moopp styled-ostream.oo.h styled-ostream.oo.c ostream.oo.h
-diff -urN a/gnulib-local/modules/term-ostream b/gnulib-local/modules/term-ostream
---- a/gnulib-local/modules/term-ostream	2015-08-21 06:48:27.000000000 +0100
-+++ b/gnulib-local/modules/term-ostream	2015-10-22 00:31:33.342259600 +0100
+--- a/gnulib-local/modules/term-ostream
++++ b/gnulib-local/modules/term-ostream
 @@ -22,7 +22,11 @@
  gl_TERM_OSTREAM
  

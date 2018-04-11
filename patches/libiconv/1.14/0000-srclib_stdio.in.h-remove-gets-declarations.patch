@@ -1,6 +1,9 @@
-diff -r -u libiconv-1.14/srclib/stdio.in.h.orig libiconv-1.14/srclib/stdio.in.h
---- libiconv-1.14/srclib/stdio.in.h.orig	2013-02-22 13:52:46.336327969 -0600
-+++ libiconv-1.14/srclib/stdio.in.h	2013-02-22 13:54:27.948207059 -0600
+---
+ srclib/stdio.in.h |   19 ++++---------------
+ 1 file changed, 4 insertions(+), 15 deletions(-)
+
+--- a/srclib/stdio.in.h
++++ b/srclib/stdio.in.h
 @@ -679,22 +679,11 @@
  # endif
  #endif

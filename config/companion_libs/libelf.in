@@ -10,11 +10,6 @@ config LIBELF_V_0_8_13
     bool
     prompt "0.8.13"
 
-config LIBELF_V_0_8_12
-    bool
-    prompt "0.8.12 (OBSOLETE)"
-    depends on OBSOLETE
-
 endchoice
 
 config LIBELF_VERSION
@@ -22,4 +17,3 @@ config LIBELF_VERSION
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
     default "0.8.13" if LIBELF_V_0_8_13
-    default "0.8.12" if LIBELF_V_0_8_12

@@ -8,12 +8,9 @@ https://lists.gnu.org/archive/html/bug-gnulib/2016-03/msg00054.html
 * lib/sys_select.in.h [__CYGWIN__]: Avoid "unknown type name"
 diagnostics.
 ---
- ChangeLog           |  8 ++++++++
- lib/sys_select.in.h | 10 ++++++----
- 2 files changed, 14 insertions(+), 4 deletions(-)
+ gettext-tools/gnulib-lib/sys_select.in.h |   10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/gettext-tools/gnulib-lib/sys_select.in.h b/gettext-tools/gnulib-lib/sys_select.in.h
-index d6d3f9f..7281144 100644
 --- a/gettext-tools/gnulib-lib/sys_select.in.h
 +++ b/gettext-tools/gnulib-lib/sys_select.in.h
 @@ -81,8 +81,9 @@

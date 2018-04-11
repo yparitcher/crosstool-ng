@@ -7,9 +7,12 @@ Removed ChangeLog part
 # Parent  816c18dbd492050ef8892e91602d9e758abc2988
 Fix r0 clobbering issue with "large" code affecting elf+darwin PIC.
 
-diff -r 816c18dbd492 -r 829215e83ff1 mpn/powerpc32/vmx/mod_34lsub1.asm
---- a/mpn/powerpc32/vmx/mod_34lsub1.asm	Tue Jun 19 15:02:48 2012 +0200
-+++ b/mpn/powerpc32/vmx/mod_34lsub1.asm	Sat Jul 21 19:19:11 2012 +0200
+---
+ mpn/powerpc32/vmx/mod_34lsub1.asm |   17 +++++++++--------
+ 1 file changed, 9 insertions(+), 8 deletions(-)
+
+--- a/mpn/powerpc32/vmx/mod_34lsub1.asm
++++ b/mpn/powerpc32/vmx/mod_34lsub1.asm
 @@ -1,6 +1,7 @@
  dnl  PowerPC-32 mpn_mod_34lsub1 -- mpn remainder mod 2^24-1.
  
@@ -74,4 +77,3 @@ diff -r 816c18dbd492 -r 829215e83ff1 mpn/powerpc32/vmx/mod_34lsub1.asm
  	srwi	r0, r0, 3		C r0 = floor(n/12)
  	mtctr	r0
  
-

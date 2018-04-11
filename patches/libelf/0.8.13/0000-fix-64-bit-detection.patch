@@ -1,6 +1,10 @@
-diff -dur libelf-0.8.10.orig/configure libelf-0.8.10/configure
---- libelf-0.8.10.orig/configure	2007-09-07 14:08:06.000000000 +0200
-+++ libelf-0.8.10/configure	2008-10-23 22:43:19.000000000 +0200
+---
+ configure    |    2 +-
+ configure.in |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+--- a/configure
++++ b/configure
 @@ -1595,7 +1595,7 @@
    echo $ac_n "(cached) $ac_c" 1>&6
  else
@@ -10,9 +14,8 @@ diff -dur libelf-0.8.10.orig/configure libelf-0.8.10/configure
  else
    cat > conftest.$ac_ext <<EOF
  #line 1602 "configure"
-diff -dur libelf-0.8.10.orig/configure.in libelf-0.8.10/configure.in
---- libelf-0.8.10.orig/configure.in	2007-09-07 14:07:59.000000000 +0200
-+++ libelf-0.8.10/configure.in	2008-10-23 22:43:10.000000000 +0200
+--- a/configure.in
++++ b/configure.in
 @@ -90,7 +90,7 @@
  AC_CHECK_SIZEOF(short,2)
  AC_CHECK_SIZEOF(int,4)

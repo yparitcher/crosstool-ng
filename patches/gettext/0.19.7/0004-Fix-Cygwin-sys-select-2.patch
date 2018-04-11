@@ -1,3 +1,7 @@
+---
+ gettext-tools/gnulib-lib/sys_select.in.h |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
 --- a/gettext-tools/gnulib-lib/sys_select.in.h
 +++ b/gettext-tools/gnulib-lib/sys_select.in.h
 @@ -82,8 +82,8 @@

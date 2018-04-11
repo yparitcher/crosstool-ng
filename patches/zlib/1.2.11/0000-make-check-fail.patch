@@ -2,8 +2,12 @@
 
 ... if the test fails.
 
---- zlib-1.2.11/Makefile.in.orig	2017-02-11 12:00:37.768094420 -0800
-+++ zlib-1.2.11/Makefile.in	2017-02-11 12:01:02.088399001 -0800
+---
+ Makefile.in |    6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+--- a/Makefile.in
++++ b/Makefile.in
 @@ -91,7 +91,7 @@
  	  echo '		*** zlib test OK ***'; \
  	else \

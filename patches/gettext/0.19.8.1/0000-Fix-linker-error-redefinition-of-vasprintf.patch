@@ -8,11 +8,9 @@ The link error was:
 .libs/autosprintf.o:autosprintf.cc:(.text$vasprintf[_vasprintf]+0x0): multiple definition of `_vasprintf'
 .libs/lib-asprintf.o:lib-asprintf.c:(.text+0x4621): first defined here
 ---
- gettext-runtime/libasprintf/autosprintf.cc | 2 ++
+ gettext-runtime/libasprintf/autosprintf.cc |    2 ++
  1 file changed, 2 insertions(+)
 
-diff --git a/gettext-runtime/libasprintf/autosprintf.cc b/gettext-runtime/libasprintf/autosprintf.cc
-index ca318f7..2526210 100644
 --- a/gettext-runtime/libasprintf/autosprintf.cc
 +++ b/gettext-runtime/libasprintf/autosprintf.cc
 @@ -19,8 +19,10 @@
@@ -26,6 +24,3 @@ index ca318f7..2526210 100644
  
  /* Specification.  */
  #include "autosprintf.h"
--- 
-1.8.4
-
