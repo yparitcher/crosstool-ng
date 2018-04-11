@@ -54,15 +54,15 @@ config CC_GLIBC_SHOW_LINARO
     help
       Linaro is maintaining some advanced/more stable/experimental versions
       of glibc, especially for the ARM architecture.
-      
+
       Those versions have not been blessed by the glibc comunity (nor have they
       been cursed either!), but they look to be pretty much stable, and even
       more stable than the upstream versions. YMMV...
-      
+
       If you do not know what this Linaro stuff is, then simply say 'n' here,
       and rest in peace. OTOH, if you know what you are doing, you will be
       able to use and enjoy :-) the Linaro versions by saying 'y' here.
-      
+
       Linaro: http://www.linaro.org/
 
 # GLIBC and kernel are special when it comes to obsoletion. Users
@@ -75,6 +75,17 @@ choice
     prompt "glibc version"
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
+
+config LIBC_GLIBC_V_2_27
+    bool
+    prompt "2.27 (EXPERIMENTAL)"
+    depends on EXPERIMENTAL
+    select LIBC_GLIBC_2_23_or_later
+
+config LIBC_GLIBC_V_2_26
+    bool
+    prompt "2.26"
+    select LIBC_GLIBC_2_23_or_later
 
 config LIBC_GLIBC_V_2_25
     bool
@@ -153,28 +164,33 @@ config LIBC_GLIBC_V_2_14_1
     prompt "2.14.1 (OBSOLETE)"
     depends on OBSOLETE
 
-config LIBC_GLIBC_V_2_14
-    bool
-    prompt "2.14 (OBSOLETE)"
-    depends on OBSOLETE
-
 config LIBC_GLIBC_V_2_13
     bool
     prompt "2.13 (OBSOLETE)"
     depends on OBSOLETE
 
-# This version did not have glibc-ports addon released
+# This version did not have glibc-ports addon released, I rolled one myself
 config LIBC_GLIBC_V_2_12_2
     bool
     prompt "2.12.2 (OBSOLETE)"
     depends on OBSOLETE
-    depends on !LIBC_GLIBC_NEEDS_PORTS
 
 # EOL 11/2020 [CentOS6.x]
 config LIBC_GLIBC_V_2_12_1
     bool
     prompt "2.12.1 (OBSOLETE)"
     depends on OBSOLETE
+
+config LIBC_GLIBC_V_2_9
+    bool
+    prompt "2.9 (OBSOLETE)"
+    depends on OBSOLETE
+
+config LIBC_GLIBC_V_2_5_1
+    bool
+    prompt "2.5.1 (OBSOLETE)"
+    depends on OBSOLETE
+    select LIBC_SUPPORT_THREADS_LT
 
 endchoice
 
@@ -201,6 +217,8 @@ config LIBC_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "2.27" if LIBC_GLIBC_V_2_27
+    default "2.26" if LIBC_GLIBC_V_2_26
     default "2.25" if LIBC_GLIBC_V_2_25
     default "2.24" if LIBC_GLIBC_V_2_24
     default "2.23" if LIBC_GLIBC_V_2_23
@@ -214,9 +232,10 @@ config LIBC_VERSION
     default "2.16.0" if LIBC_GLIBC_V_2_16_0
     default "2.15" if LIBC_GLIBC_V_2_15
     default "2.14.1" if LIBC_GLIBC_V_2_14_1
-    default "2.14" if LIBC_GLIBC_V_2_14
     default "2.13" if LIBC_GLIBC_V_2_13
     default "2.12.2" if LIBC_GLIBC_V_2_12_2
     default "2.12.1" if LIBC_GLIBC_V_2_12_1
+    default "2.9" if LIBC_GLIBC_V_2_9
+    default "2.5.1" if LIBC_GLIBC_V_2_5_1
 
 endif # ! LIBC_GLIBC_CUSTOM
