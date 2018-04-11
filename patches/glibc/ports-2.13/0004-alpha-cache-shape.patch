@@ -9,8 +9,8 @@ can punt it.
  sysdeps/unix/sysv/linux/alpha/dl-support.c |    1 -
  1 file changed, 1 deletion(-)
 
---- a/sysdeps/unix/sysv/linux/alpha/dl-support.c
-+++ b/sysdeps/unix/sysv/linux/alpha/dl-support.c
+--- a/ports/sysdeps/unix/sysv/linux/alpha/dl-support.c
++++ b/ports/sysdeps/unix/sysv/linux/alpha/dl-support.c
 @@ -1,2 +1 @@
 -#include "dl-auxv.h"
  #include <elf/dl-support.c>

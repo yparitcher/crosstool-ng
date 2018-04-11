@@ -21,8 +21,8 @@ Tested that this fixes the build for ARM.
  sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c       |    3 ++-
  2 files changed, 4 insertions(+), 2 deletions(-)
 
---- a/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
-+++ b/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
+--- a/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
++++ b/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
 @@ -22,7 +22,8 @@
  #include <pthreadP.h>
  
@@ -33,8 +33,8 @@ Tested that this fixes the build for ARM.
  static _Unwind_Reason_Code (*libgcc_s_personality)
    (_Unwind_State, struct _Unwind_Exception *, struct _Unwind_Context *);
  static _Unwind_Reason_Code (*libgcc_s_forcedunwind)
---- a/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
-+++ b/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
+--- a/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
++++ b/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
 @@ -20,7 +20,8 @@
  #include <stdio.h>
  #include <unwind.h>

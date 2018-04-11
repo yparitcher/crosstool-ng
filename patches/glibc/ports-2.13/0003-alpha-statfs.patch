@@ -7,8 +7,8 @@
  sysdeps/unix/sysv/linux/alpha/bits/statfs.h |    6 ++++--
  1 file changed, 4 insertions(+), 2 deletions(-)
 
---- a/sysdeps/unix/sysv/linux/alpha/bits/statfs.h
-+++ b/sysdeps/unix/sysv/linux/alpha/bits/statfs.h
+--- a/ports/sysdeps/unix/sysv/linux/alpha/bits/statfs.h
++++ b/ports/sysdeps/unix/sysv/linux/alpha/bits/statfs.h
 @@ -42,7 +42,8 @@
      __fsid_t f_fsid;
      int f_namelen;

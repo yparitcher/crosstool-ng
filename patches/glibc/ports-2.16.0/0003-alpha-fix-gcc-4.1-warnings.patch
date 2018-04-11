@@ -16,8 +16,8 @@ I cannot really think of anything better than
  sysdeps/unix/sysv/linux/alpha/ioperm.c |    8 ++++----
  1 file changed, 4 insertions(+), 4 deletions(-)
 
---- a/sysdeps/unix/sysv/linux/alpha/ioperm.c
-+++ b/sysdeps/unix/sysv/linux/alpha/ioperm.c
+--- a/ports/sysdeps/unix/sysv/linux/alpha/ioperm.c
++++ b/ports/sysdeps/unix/sysv/linux/alpha/ioperm.c
 @@ -177,13 +177,13 @@
  static inline void
  stb_mb(unsigned char val, unsigned long addr)

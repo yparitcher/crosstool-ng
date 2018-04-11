@@ -7,8 +7,8 @@
  sysdeps/unix/sysv/linux/alpha/bits/fcntl.h |    2 ++
  1 file changed, 2 insertions(+)
 
---- a/sysdeps/unix/sysv/linux/alpha/bits/fcntl.h
-+++ b/sysdeps/unix/sysv/linux/alpha/bits/fcntl.h
+--- a/ports/sysdeps/unix/sysv/linux/alpha/bits/fcntl.h
++++ b/ports/sysdeps/unix/sysv/linux/alpha/bits/fcntl.h
 @@ -97,6 +97,8 @@
  # define F_SETLEASE	1024	/* Set a lease.	 */
  # define F_GETLEASE	1025	/* Enquire what lease is active.  */

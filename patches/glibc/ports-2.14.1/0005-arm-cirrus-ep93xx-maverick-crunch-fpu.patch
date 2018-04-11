@@ -15,8 +15,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
  sysdeps/arm/gmp-mparam.h         |    2 -
  11 files changed, 216 insertions(+), 3 deletions(-)
 
---- a/sysdeps/arm/bits/endian.h
-+++ b/sysdeps/arm/bits/endian.h
+--- a/ports/sysdeps/arm/bits/endian.h
++++ b/ports/sysdeps/arm/bits/endian.h
 @@ -12,7 +12,7 @@
  /* FPA floating point units are always big-endian, irrespective of the
     CPU endianness.  VFP floating point units use the same endianness
@@ -26,8 +26,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
  #define __FLOAT_WORD_ORDER __BYTE_ORDER
  #else
  #define __FLOAT_WORD_ORDER __BIG_ENDIAN
---- a/sysdeps/arm/fpu/__longjmp.S
-+++ b/sysdeps/arm/fpu/__longjmp.S
+--- a/ports/sysdeps/arm/fpu/__longjmp.S
++++ b/ports/sysdeps/arm/fpu/__longjmp.S
 @@ -30,7 +30,33 @@
  	movs	r0, r1		/* get the return value in place */
  	moveq	r0, #1		/* can't let setjmp() return zero! */
@@ -62,8 +62,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
  
  	LOADREGS(ia, ip, {v1-v6, sl, fp, sp, pc})
  END (__longjmp)
---- a/sysdeps/arm/fpu/bits/fenv.h
-+++ b/sysdeps/arm/fpu/bits/fenv.h
+--- a/ports/sysdeps/arm/fpu/bits/fenv.h
++++ b/ports/sysdeps/arm/fpu/bits/fenv.h
 @@ -20,6 +20,45 @@
  # error "Never use <bits/fenv.h> directly; include <fenv.h> instead."
  #endif
@@ -119,8 +119,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
  /* Type representing exception flags. */
  typedef unsigned long int fexcept_t;
  
---- a/sysdeps/arm/fpu/bits/setjmp.h
-+++ b/sysdeps/arm/fpu/bits/setjmp.h
+--- a/ports/sysdeps/arm/fpu/bits/setjmp.h
++++ b/ports/sysdeps/arm/fpu/bits/setjmp.h
 @@ -28,7 +28,11 @@
  #ifndef _ASM
  /* Jump buffer contains v1-v6, sl, fp, sp and pc.  Other registers are not
@@ -133,8 +133,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
 +#endif
  
  #endif
---- a/sysdeps/arm/fpu/fegetround.c
-+++ b/sysdeps/arm/fpu/fegetround.c
+--- a/ports/sysdeps/arm/fpu/fegetround.c
++++ b/ports/sysdeps/arm/fpu/fegetround.c
 @@ -18,9 +18,21 @@
     02111-1307 USA.  */
  
@@ -157,8 +157,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
 +
 +#endif
  }
---- a/sysdeps/arm/fpu/fesetround.c
-+++ b/sysdeps/arm/fpu/fesetround.c
+--- a/ports/sysdeps/arm/fpu/fesetround.c
++++ b/ports/sysdeps/arm/fpu/fesetround.c
 @@ -18,12 +18,28 @@
     02111-1307 USA.  */
  
@@ -188,8 +188,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
  }
  
  libm_hidden_def (fesetround)
---- a/sysdeps/arm/fpu/fpu_control.h
-+++ b/sysdeps/arm/fpu/fpu_control.h
+--- a/ports/sysdeps/arm/fpu/fpu_control.h
++++ b/ports/sysdeps/arm/fpu/fpu_control.h
 @@ -1,5 +1,6 @@
  /* FPU control word definitions.  ARM version.
 -   Copyright (C) 1996, 1997, 1998, 2000 Free Software Foundation, Inc.
@@ -285,8 +285,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
 +#endif
 +
  #endif /* _FPU_CONTROL_H */
---- a/sysdeps/arm/fpu/jmpbuf-offsets.h
-+++ b/sysdeps/arm/fpu/jmpbuf-offsets.h
+--- a/ports/sysdeps/arm/fpu/jmpbuf-offsets.h
++++ b/ports/sysdeps/arm/fpu/jmpbuf-offsets.h
 @@ -17,4 +17,8 @@
     Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
     02111-1307 USA.  */
@@ -296,8 +296,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
 +#else
  #define __JMP_BUF_SP		20
 +#endif
---- a/sysdeps/arm/fpu/setjmp.S
-+++ b/sysdeps/arm/fpu/setjmp.S
+--- a/ports/sysdeps/arm/fpu/setjmp.S
++++ b/ports/sysdeps/arm/fpu/setjmp.S
 @@ -24,11 +24,41 @@
  
  ENTRY (__sigsetjmp)
@@ -340,8 +340,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
  
  	/* Make a tail call to __sigjmp_save; it takes the same args.  */
  	B	PLTJMP(C_SYMBOL_NAME(__sigjmp_save))
---- a/sysdeps/arm/gccframe.h
-+++ b/sysdeps/arm/gccframe.h
+--- a/ports/sysdeps/arm/gccframe.h
++++ b/ports/sysdeps/arm/gccframe.h
 @@ -17,6 +17,10 @@
     Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
     02111-1307 USA.  */
@@ -353,8 +353,8 @@ Add support for the Maverick Crunch FPU on Cirrus EP93XX processor series
 +#endif
  
  #include <sysdeps/generic/gccframe.h>
---- a/sysdeps/arm/gmp-mparam.h
-+++ b/sysdeps/arm/gmp-mparam.h
+--- a/ports/sysdeps/arm/gmp-mparam.h
++++ b/ports/sysdeps/arm/gmp-mparam.h
 @@ -29,7 +29,7 @@
  #if defined(__ARMEB__)
  # define IEEE_DOUBLE_MIXED_ENDIAN 0

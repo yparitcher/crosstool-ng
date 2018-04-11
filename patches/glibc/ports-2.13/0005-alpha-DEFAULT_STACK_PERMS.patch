@@ -6,8 +6,8 @@
  sysdeps/alpha/stackinfo.h |    6 ++++++
  1 file changed, 6 insertions(+)
 
---- a/sysdeps/alpha/stackinfo.h
-+++ b/sysdeps/alpha/stackinfo.h
+--- a/ports/sysdeps/alpha/stackinfo.h
++++ b/ports/sysdeps/alpha/stackinfo.h
 @@ -22,7 +22,13 @@
  #ifndef _STACKINFO_H
  #define _STACKINFO_H	1
