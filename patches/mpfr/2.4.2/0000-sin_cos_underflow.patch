@@ -1,17 +1,23 @@
-diff -Naurd mpfr-2.4.2-a/PATCHES mpfr-2.4.2-b/PATCHES
---- mpfr-2.4.2-a/PATCHES	2009-12-07 13:37:12.000000000 +0000
-+++ mpfr-2.4.2-b/PATCHES	2009-12-07 13:37:12.000000000 +0000
+---
+ PATCHES          |    1 
+ VERSION          |    2 -
+ mpfr.h           |    2 -
+ sin_cos.c        |   34 +++++++++++++++++----------------
+ tests/tsin_cos.c |   56 +++++++++++++++++++++++++++++++++++++++++++++++--------
+ version.c        |    2 -
+ 6 files changed, 70 insertions(+), 27 deletions(-)
+
+--- /dev/null
++++ b/PATCHES
 @@ -0,0 +1 @@
 +sin_cos_underflow
-diff -Naurd mpfr-2.4.2-a/VERSION mpfr-2.4.2-b/VERSION
---- mpfr-2.4.2-a/VERSION	2009-11-30 02:43:08.000000000 +0000
-+++ mpfr-2.4.2-b/VERSION	2009-12-07 13:37:12.000000000 +0000
+--- a/VERSION
++++ b/VERSION
 @@ -1 +1 @@
 -2.4.2
 +2.4.2-p1
-diff -Naurd mpfr-2.4.2-a/mpfr.h mpfr-2.4.2-b/mpfr.h
---- mpfr-2.4.2-a/mpfr.h	2009-11-30 02:43:08.000000000 +0000
-+++ mpfr-2.4.2-b/mpfr.h	2009-12-07 13:37:12.000000000 +0000
+--- a/mpfr.h
++++ b/mpfr.h
 @@ -27,7 +27,7 @@
  #define MPFR_VERSION_MAJOR 2
  #define MPFR_VERSION_MINOR 4
@@ -21,9 +27,8 @@ diff -Naurd mpfr-2.4.2-a/mpfr.h mpfr-2.4.2-b/mpfr.h
  
  /* Macros dealing with MPFR VERSION */
  #define MPFR_VERSION_NUM(a,b,c) (((a) << 16L) | ((b) << 8) | (c))
-diff -Naurd mpfr-2.4.2-a/sin_cos.c mpfr-2.4.2-b/sin_cos.c
---- mpfr-2.4.2-a/sin_cos.c	2009-11-30 02:43:09.000000000 +0000
-+++ mpfr-2.4.2-b/sin_cos.c	2009-12-07 13:37:12.000000000 +0000
+--- a/sin_cos.c
++++ b/sin_cos.c
 @@ -82,17 +82,19 @@
        if (y != x)
          /* y and x differ, thus we can safely try to compute y first */
@@ -87,9 +92,8 @@ diff -Naurd mpfr-2.4.2-a/sin_cos.c mpfr-2.4.2-b/sin_cos.c
    MPFR_SAVE_EXPO_FREE (expo);
    mpfr_check_range (y, inexy, rnd_mode);
    mpfr_check_range (z, inexz, rnd_mode);
-diff -Naurd mpfr-2.4.2-a/tests/tsin_cos.c mpfr-2.4.2-b/tests/tsin_cos.c
---- mpfr-2.4.2-a/tests/tsin_cos.c	2009-11-30 02:43:08.000000000 +0000
-+++ mpfr-2.4.2-b/tests/tsin_cos.c	2009-12-07 13:37:12.000000000 +0000
+--- a/tests/tsin_cos.c
++++ b/tests/tsin_cos.c
 @@ -382,23 +382,56 @@
  consistency (void)
  {
@@ -115,9 +119,7 @@ diff -Naurd mpfr-2.4.2-a/tests/tsin_cos.c mpfr-2.4.2-b/tests/tsin_cos.c
 -      mpfr_sin_cos (s2, c2, x, rnd);
 -      if (!(mpfr_equal_p (s1, s2) && mpfr_equal_p (c1, c2)))
 +      if (i < 8 * GMP_RND_MAX)
-         {
--          printf ("mpfr_sin_cos and mpfr_sin/mpfr_cos disagree on %s,\nx = ",
--                  mpfr_print_rnd_mode (rnd));
++        {
 +          int j = i / GMP_RND_MAX;
 +          if (j & 1)
 +            mpfr_set_emin (MPFR_EMIN_MIN);
@@ -149,7 +151,9 @@ diff -Naurd mpfr-2.4.2-a/tests/tsin_cos.c mpfr-2.4.2-b/tests/tsin_cos.c
 +      flags_ref = flags_sin | flags_cos;
 +      if (!(mpfr_equal_p (s1, s2) && mpfr_equal_p (c1, c2)) ||
 +          inex != inex_ref || flags != flags_ref)
-+        {
+         {
+-          printf ("mpfr_sin_cos and mpfr_sin/mpfr_cos disagree on %s,\nx = ",
+-                  mpfr_print_rnd_mode (rnd));
 +          printf ("mpfr_sin_cos and mpfr_sin/mpfr_cos disagree on %s,"
 +                  " i = %d\nx = ", mpfr_print_rnd_mode (rnd), i);
            mpfr_dump (x);
@@ -172,9 +176,8 @@ diff -Naurd mpfr-2.4.2-a/tests/tsin_cos.c mpfr-2.4.2-b/tests/tsin_cos.c
      }
  }
  
-diff -Naurd mpfr-2.4.2-a/version.c mpfr-2.4.2-b/version.c
---- mpfr-2.4.2-a/version.c	2009-11-30 02:43:08.000000000 +0000
-+++ mpfr-2.4.2-b/version.c	2009-12-07 13:37:12.000000000 +0000
+--- a/version.c
++++ b/version.c
 @@ -25,5 +25,5 @@
  const char *
  mpfr_get_version (void)
