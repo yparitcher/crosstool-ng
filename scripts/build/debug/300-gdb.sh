@@ -346,9 +346,10 @@ do_debug_gdb_build() {
         CC_FOR_BUILD="${CT_BUILD}-gcc"                  \
         CFLAGS_FOR_BUILD="${CT_CFLAGS_FOR_BUILD}"       \
         LDFLAGS_FOR_BUILD="${CT_LDFLAGS_FOR_BUILD}"     \
-        CC="${CT_TARGET}-${CT_CC}"                      \
-        CPP="${CT_TARGET}-cpp"                          \
-        LD="${CT_TARGET}-ld"                            \
+        CPP="${CPP_for_gdb}"                            \
+        CC="${CC_for_gdb}"                              \
+        CXX="${CXX_for_gdb}"                            \
+        LD="${LD_for_gdb}"                              \
         LDFLAGS="${gdbserver_LDFLAGS}"                  \
         ${CONFIG_SHELL}                                 \
         "${gdb_src_dir}/gdb/gdbserver/configure"        \
