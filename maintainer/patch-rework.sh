@@ -10,7 +10,7 @@ shift 3
 diff="$@"
 
 do_help() {
-    cat <<-_EOF_
+    cat << _EOF_
         ${0##*/}: transform a patchset of non-p1 patches into -p1 patches
         
         Usage:
@@ -39,7 +39,7 @@ do_help() {
                 patch-rework.sh gcc-4.4.2                   \\
                                 /path/to/gentoo/gcc/patches \\
                                 gcc-4.4.2.patches
-        _EOF_
+_EOF_
 }
 
 # Sanity checks
