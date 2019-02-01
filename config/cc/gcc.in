@@ -73,6 +73,19 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config CC_GCC_V_linaro_7_4
+    bool
+    prompt "linaro-7.4-2019.02 (EXPERIMENTAL)"
+    depends on CC_GCC_SHOW_LINARO
+    depends on EXPERIMENTAL
+    select CC_GCC_7
+
+config CC_GCC_V_7_4_0
+    bool
+    prompt "7.4.0 (EXPERIMENTAL)"
+    depends on EXPERIMENTAL
+    select CC_GCC_7
+
 config CC_GCC_V_linaro_7_3
     bool
     prompt "linaro-7.3-2018.05 (EXPERIMENTAL)"
@@ -85,6 +98,17 @@ config CC_GCC_V_7_3_0
     prompt "7.3.0 (EXPERIMENTAL)"
     depends on EXPERIMENTAL
     select CC_GCC_7
+
+config CC_GCC_V_linaro_6_5
+    bool
+    prompt "linaro-6.5-2018.12"
+    depends on CC_GCC_SHOW_LINARO
+    select CC_GCC_6
+
+config CC_GCC_V_6_5_0
+    bool
+    prompt "6.5.0"
+    select CC_GCC_6
 
 config CC_GCC_V_linaro_6_4
     bool
@@ -207,8 +231,12 @@ config CC_GCC_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "linaro-7.4-2019.02" if CC_GCC_V_linaro_7_4
+    default "7.4.0" if CC_GCC_V_7_4_0
     default "linaro-7.3-2018.05" if CC_GCC_V_linaro_7_3
     default "7.3.0" if CC_GCC_V_7_3_0
+    default "linaro-6.5-2018.12" if CC_GCC_V_linaro_6_5
+    default "6.5.0" if CC_GCC_V_6_5_0
     default "linaro-6.4-2018.05" if CC_GCC_V_linaro_6_4
     default "6.4.0" if CC_GCC_V_6_4_0
     default "linaro-5.5-2017.10" if CC_GCC_V_linaro_5_5
