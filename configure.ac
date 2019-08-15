@@ -434,7 +434,7 @@ AS_IF(
     [AC_MSG_ERROR([could not find curses library, required for the kconfig frontends])])
 AC_SEARCH_LIBS(
     [tgetent],
-    [termcap tinfo ncursesw ncurses curses])
+    [termcap tinfow tinfo ncursesw ncurses curses])
 
 #--------------------------------------------------------------------
 # Lastly, take care of crosstool-NG internal values
