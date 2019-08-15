@@ -6,9 +6,9 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
-config MPFR_V_4_0_1
+config MPFR_V_4_0_2
     bool
-    prompt "4.0.1 (EXPERIMENTAL)"
+    prompt "4.0.2 (EXPERIMENTAL)"
     depends on EXPERIMENTAL
 
 config MPFR_V_3_1_6
@@ -31,7 +31,7 @@ config MPFR_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
-    default "4.0.1" if MPFR_V_4_0_1
+    default "4.0.2" if MPFR_V_4_0_2
     default "3.1.6" if MPFR_V_3_1_6
     default "3.0.1" if MPFR_V_3_0_1
     default "2.4.2" if MPFR_V_2_4_2
