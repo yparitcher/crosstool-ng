@@ -230,6 +230,12 @@ glibc_backend_once()
 
     touch config.cache
 
+    # Hide host C++ binary from configure
+    # c.f., https://github.com/stilor/crosstool-ng/commit/f71d3cb1c23d1e76fbc6549a04c64f6a8d5d4621
+    if [ $(echo "${CT_GLIBC_VERSION}" | cut -f2 -d'.') -lt 29 ]; then
+        echo "ac_cv_prog_ac_ct_CXX=${CT_TARGET}-g++" >>config.cache
+    fi
+
     # Until it became explicitly controllable with --enable-stack-protector=...,
     # configure detected GCC support for -fstack-protector{,-strong} and
     # tried to enable it in some parts of glibc - which then failed to build.
@@ -330,6 +336,7 @@ glibc_backend_once()
 
     # Mask C++ compiler. Glibc 2.29+ attempts to build some tests using gcc++, but
     # we haven't built libstdc++ yet. Should really implement #808 after 1.24.0...
+    # c.f., https://github.com/stilor/crosstool-ng/commit/f71d3cb1c23d1e76fbc6549a04c64f6a8d5d4621
     if [ $(echo "${CT_GLIBC_VERSION}" | cut -f2 -d'.') -ge 29 ]; then
         extra_make_args+=( CXX= )
     fi
