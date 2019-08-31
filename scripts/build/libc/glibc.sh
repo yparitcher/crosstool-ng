@@ -330,7 +330,7 @@ glibc_backend_once()
 
     # Mask C++ compiler. Glibc 2.29+ attempts to build some tests using gcc++, but
     # we haven't built libstdc++ yet. Should really implement #808 after 1.24.0...
-    if [ $( echo "${CT_GLIBC_VERSION}" | cut -f2 -d'.' ) -ge 29 ]; then
+    if [ $(echo "${CT_GLIBC_VERSION}" | cut -f2 -d'.') -ge 29 ]; then
         extra_make_args+=( CXX= )
     fi
     case "${CT_ARCH},${CT_ARCH_CPU}" in
