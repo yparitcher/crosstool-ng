@@ -36,10 +36,7 @@ EOF
         -i aclocal.m4
 }
 
-glibc_extract()
-{
-    CT_ExtractPatch GLIBC
-
+nerf_tools_version_checks() {
     if [ -f aclocal.m4 ]; then
         local conf_file
 
@@ -62,6 +59,11 @@ glibc_extract()
 
         CT_DoExecLog DEBUG autoconf -f
     fi
+}
+
+glibc_extract()
+{
+    CT_ExtractPatch GLIBC nerf_tools_version_checks
 
     if [ "${CT_GLIBC_USE_PORTS_EXTERNAL}" = "y" ]; then
         CT_ExtractPatch GLIBC_PORTS
