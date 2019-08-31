@@ -106,7 +106,6 @@ musl_backend_once() {
         --target="${multi_target}"                        \
         --prefix="/usr"                                   \
         --libdir="${multilib_dir}"                        \
-        --disable-gcc-wrapper                             \
         "${extra_config[@]}"
 
     if [ "${libc_mode}" = "startfiles" ]; then
