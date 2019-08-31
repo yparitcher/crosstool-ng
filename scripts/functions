@@ -1761,12 +1761,12 @@ CT_Mirrors()
         echo "https://ftp.gnu.org/gnu/${project}"
         echo "http://ftp.gnu.org/gnu/${project}"
         echo "ftp://ftp.gnu.org/gnu/${project}"
+        echo "http://files.ak-team.com/niluje/gentoo"
         ;;
     sourceware)
         echo "ftp://sourceware.org/pub/${project}"
         echo "http://mirrors.kernel.org/sourceware/${project}"
         echo "http://gcc.gnu.org/pub/${project}"
-        echo "http://files.ak-team.com/niluje/gentoo"
         ;;
     Linaro)
         local version="${3}"

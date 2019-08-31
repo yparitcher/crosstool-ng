@@ -20,8 +20,8 @@ Signed-off-by: Mike Frysinger <vapier@gentoo.org>
 
 diff --git a/sysdeps/arm/fpu/setjmp.S b/sysdeps/arm/fpu/setjmp.S
 index 8432836..82a7e19 100644
---- a/ports/sysdeps/arm/fpu/setjmp.S
-+++ b/ports/sysdeps/arm/fpu/setjmp.S
+--- a/sysdeps/arm/fpu/setjmp.S
++++ b/sysdeps/arm/fpu/setjmp.S
 @@ -33,3 +33,5 @@ ENTRY (__sigsetjmp)
  	/* Make a tail call to __sigjmp_save; it takes the same args.  */
  	B	PLTJMP(C_SYMBOL_NAME(__sigjmp_save))
