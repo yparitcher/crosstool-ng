@@ -1,5 +1,10 @@
-diff --git a/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c b/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c
-index 011746d..260beec 100644
+---
+ sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c |    3 ++-
+ sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c       |    3 ++-
+ sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c      |    3 ++-
+ sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c            |    3 ++-
+ 4 files changed, 8 insertions(+), 4 deletions(-)
+
 --- a/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c
 +++ b/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c
 @@ -23,7 +23,8 @@
@@ -12,8 +17,6 @@ index 011746d..260beec 100644
  static _Unwind_Reason_Code (*libgcc_s_personality)
    (_Unwind_State, struct _Unwind_Exception *, struct _Unwind_Context *);
  static _Unwind_Reason_Code (*libgcc_s_forcedunwind)
-diff --git a/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c b/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c
-index cdab10e..62ca834 100644
 --- a/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c
 +++ b/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c
 @@ -21,7 +21,8 @@
@@ -26,8 +29,6 @@ index cdab10e..62ca834 100644
  static _Unwind_Reason_Code (*libgcc_s_personality)
    (_Unwind_State, struct _Unwind_Exception *, struct _Unwind_Context *);
  
-diff --git a/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c b/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
-index e19facf..38b9909 100644
 --- a/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
 +++ b/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
 @@ -23,7 +23,8 @@
@@ -40,8 +41,6 @@ index e19facf..38b9909 100644
  static _Unwind_Reason_Code (*libgcc_s_personality)
    (int, _Unwind_Action, _Unwind_Exception_Class, struct _Unwind_Exception *,
     struct _Unwind_Context *);
-diff --git a/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c b/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
-index 8dcfd34..e9550c7 100644
 --- a/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
 +++ b/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
 @@ -21,7 +21,8 @@

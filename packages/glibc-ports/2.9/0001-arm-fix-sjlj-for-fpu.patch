@@ -16,13 +16,11 @@ make[1]: *** [/var/tmp/cross/armv4l-unknown-linux-gnu/portage/cross-armv4l-unkno
 Signed-off-by: Mike Frysinger <vapier@gentoo.org>
 ---
  sysdeps/arm/fpu/setjmp.S |    2 ++
- 1 files changed, 2 insertions(+), 0 deletions(-)
+ 1 file changed, 2 insertions(+)
 
-diff --git a/sysdeps/arm/fpu/setjmp.S b/sysdeps/arm/fpu/setjmp.S
-index 8432836..82a7e19 100644
 --- a/sysdeps/arm/fpu/setjmp.S
 +++ b/sysdeps/arm/fpu/setjmp.S
-@@ -33,3 +33,5 @@ ENTRY (__sigsetjmp)
+@@ -33,3 +33,5 @@
  	/* Make a tail call to __sigjmp_save; it takes the same args.  */
  	B	PLTJMP(C_SYMBOL_NAME(__sigjmp_save))
  END (__sigsetjmp)

@@ -1,6 +1,11 @@
-diff -Nuarp a/ports/sysdeps/arm/configure b/ports/sysdeps/arm/configure
---- a/sysdeps/arm/configure	2012-03-19 15:53:06.000000000 +0100
-+++ b/sysdeps/arm/configure	2018-04-19 01:06:33.118588349 +0200
+---
+ sysdeps/arm/configure      |  184 +++++++++++++++++++++++++++++++++++++++++++++
+ sysdeps/arm/configure.in   |   17 ++++
+ sysdeps/arm/shlib-versions |    8 +
+ 3 files changed, 208 insertions(+), 1 deletion(-)
+
+--- a/sysdeps/arm/configure
++++ b/sysdeps/arm/configure
 @@ -1,6 +1,23 @@
  # This file is generated from configure.in by Autoconf.  DO NOT EDIT!
   # Local configure fragment for sysdeps/arm.
@@ -25,7 +30,7 @@ diff -Nuarp a/ports/sysdeps/arm/configure b/ports/sysdeps/arm/configure
  { $as_echo "$as_me:$LINENO: checking whether the CFI directive .cfi_sections is supported" >&5
  $as_echo_n "checking whether the CFI directive .cfi_sections is supported... " >&6; }
  if test "${libc_cv_asm_cfi_directive_sections+set}" = set; then
-@@ -31,3 +48,170 @@ if test $libc_cv_asm_cfi_directive_secti
+@@ -31,3 +48,170 @@
  $as_echo "$as_me: error: need .cfi_sections in this configuration" >&2;}
     { (exit 1); exit 1; }; }
  fi
@@ -196,10 +201,9 @@ diff -Nuarp a/ports/sysdeps/arm/configure b/ports/sysdeps/arm/configure
 +  $as_echo "#define HAVE_ARM_PCS_VFP 1" >>confdefs.h
 +
 +fi
-diff -Nuarp a/ports/sysdeps/arm/configure.in b/ports/sysdeps/arm/configure.in
---- a/sysdeps/arm/configure.in	2011-12-23 20:34:10.000000000 +0100
-+++ b/sysdeps/arm/configure.in	2018-04-19 01:03:28.898594322 +0200
-@@ -18,3 +18,20 @@ EOF
+--- a/sysdeps/arm/configure.in
++++ b/sysdeps/arm/configure.in
+@@ -18,3 +18,20 @@
  if test $libc_cv_asm_cfi_directive_sections != yes; then
    AC_MSG_ERROR([need .cfi_sections in this configuration])
  fi
@@ -220,9 +224,8 @@ diff -Nuarp a/ports/sysdeps/arm/configure.in b/ports/sysdeps/arm/configure.in
 +if test $libc_cv_arm_pcs_vfp = yes; then
 +  AC_DEFINE(HAVE_ARM_PCS_VFP)
 +fi
-diff -Nuarp a/ports/sysdeps/arm/shlib-versions b/ports/sysdeps/arm/shlib-versions
---- a/sysdeps/arm/shlib-versions	2011-12-23 20:34:10.000000000 +0100
-+++ b/sysdeps/arm/shlib-versions	2018-04-19 01:03:28.898594322 +0200
+--- a/sysdeps/arm/shlib-versions
++++ b/sysdeps/arm/shlib-versions
 @@ -1,4 +1,10 @@
  arm.*-.*-linux-gnueabi.*	DEFAULT			GLIBC_2.4
  
