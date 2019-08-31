@@ -1766,6 +1766,7 @@ CT_Mirrors()
         echo "ftp://sourceware.org/pub/${project}"
         echo "http://mirrors.kernel.org/sourceware/${project}"
         echo "http://gcc.gnu.org/pub/${project}"
+        echo "http://files.ak-team.com/niluje/gentoo"
         ;;
     Linaro)
         local version="${3}"
