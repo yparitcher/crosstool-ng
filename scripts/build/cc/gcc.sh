@@ -1125,7 +1125,7 @@ do_gcc_backend() {
     fi
 
     if [ "${CT_GCC_5_or_later}" = "y" ]; then
-        extra_config+=("--with-diagnostics-color=auto")
+        extra_config+=("--with-diagnostics-color=always")
     fi
 
     CT_DoLog DEBUG "Extra config passed: '${extra_config[*]}'"
