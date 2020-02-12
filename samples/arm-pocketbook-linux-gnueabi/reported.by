@@ -1,0 +1,5 @@
+reporter_name="NiLuJe"
+reporter_url="https://github.com/NiLuJe/crosstool-ng"
+reporter_comment="PocketBook
+i.MX5 & up. Based on the awfully old original SDK, hence the oldies.
+Possibly prefer the new, upstream Clang SDKs if possible."
