@@ -1,0 +1,78 @@
+diff --git a/nptl/sysdeps/pthread/unwind-forcedunwind.c b/nptl/sysdeps/pthread/unwind-forcedunwind.c
+index ae43f335e7..073b65059b 100644
+--- a/nptl/sysdeps/pthread/unwind-forcedunwind.c
++++ b/nptl/sysdeps/pthread/unwind-forcedunwind.c
+@@ -25,7 +25,7 @@
+ #include <libgcc_s.h>
+ 
+ static void *libgcc_s_handle;
+-static void (*libgcc_s_resume) (struct _Unwind_Exception *exc);
++static void (*libgcc_s_resume) (struct _Unwind_Exception *exc) __attribute_used__;
+ static _Unwind_Reason_Code (*libgcc_s_personality)
+   (int, _Unwind_Action, _Unwind_Exception_Class, struct _Unwind_Exception *,
+    struct _Unwind_Context *);
+diff --git a/nptl/sysdeps/pthread/unwind-resume.c b/nptl/sysdeps/pthread/unwind-resume.c
+index 69f3e04c43..c6dac82cc6 100644
+--- a/nptl/sysdeps/pthread/unwind-resume.c
++++ b/nptl/sysdeps/pthread/unwind-resume.c
+@@ -22,7 +22,7 @@
+ #include <unwind.h>
+ #include <libgcc_s.h>
+ 
+-static void (*libgcc_s_resume) (struct _Unwind_Exception *exc);
++static void (*libgcc_s_resume) (struct _Unwind_Exception *exc) __attribute_used__;
+ static _Unwind_Reason_Code (*libgcc_s_personality)
+   (int, _Unwind_Action, _Unwind_Exception_Class, struct _Unwind_Exception *,
+    struct _Unwind_Context *);
+diff --git a/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c b/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c
+index ed321a39..c3e92b34 100644
+--- a/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c
++++ b/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-forcedunwind.c
+@@ -23,7 +23,7 @@
+ #include <pthreadP.h>
+ 
+ static void *libgcc_s_handle;
+-static void (*libgcc_s_resume) (struct _Unwind_Exception *exc);
++static void (*libgcc_s_resume) (struct _Unwind_Exception *exc) __attribute_used__;
+ static _Unwind_Reason_Code (*libgcc_s_personality)
+   (_Unwind_State, struct _Unwind_Exception *, struct _Unwind_Context *);
+ static _Unwind_Reason_Code (*libgcc_s_forcedunwind)
+diff --git a/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c b/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c
+index 3c780b71..e470cb33 100644
+--- a/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c
++++ b/ports/sysdeps/unix/sysv/linux/arm/eabi/nptl/unwind-resume.c
+@@ -21,7 +21,7 @@
+ #include <stdio.h>
+ #include <unwind.h>
+ 
+-static void (*libgcc_s_resume) (struct _Unwind_Exception *exc);
++static void (*libgcc_s_resume) (struct _Unwind_Exception *exc) __attribute_used__;
+ static _Unwind_Reason_Code (*libgcc_s_personality)
+   (_Unwind_State, struct _Unwind_Exception *, struct _Unwind_Context *);
+ 
+diff --git a/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c b/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
+index e19facfb..c38b0db6 100644
+--- a/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
++++ b/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-forcedunwind.c
+@@ -23,7 +23,7 @@
+ #include <pthreadP.h>
+ 
+ static void *libgcc_s_handle;
+-static void (*libgcc_s_resume) (struct _Unwind_Exception *exc);
++static void (*libgcc_s_resume) (struct _Unwind_Exception *exc) __attribute_used__;
+ static _Unwind_Reason_Code (*libgcc_s_personality)
+   (int, _Unwind_Action, _Unwind_Exception_Class, struct _Unwind_Exception *,
+    struct _Unwind_Context *);
+diff --git a/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c b/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
+index 8dcfd34b..d1cc30ad 100644
+--- a/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
++++ b/ports/sysdeps/unix/sysv/linux/arm/nptl/unwind-resume.c
+@@ -21,7 +21,7 @@
+ #include <stdio.h>
+ #include <unwind.h>
+ 
+-static void (*libgcc_s_resume) (struct _Unwind_Exception *exc);
++static void (*libgcc_s_resume) (struct _Unwind_Exception *exc) __attribute_used__;
+ static _Unwind_Reason_Code (*libgcc_s_personality)
+   (int, _Unwind_Action, _Unwind_Exception_Class, struct _Unwind_Exception *,
+    struct _Unwind_Context *);
