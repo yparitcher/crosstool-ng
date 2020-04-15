@@ -1,0 +1,26 @@
+diff --git a/configure b/configure
+index 1a3f672..2604d57 100755
+--- a/configure
++++ b/configure
+@@ -6698,7 +6698,7 @@ EOF
+   $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+   (exit $ac_status); }; }
+   then
+-    if readelf -S conftest.so | grep '\.rel\(a\|\)\.dyn' > /dev/null; then
++    if readelf -S conftest.so | grep '\.\(rel\|rela\)\.dyn' > /dev/null; then
+       libc_cv_z_combreloc=yes
+     else
+       libc_cv_z_combreloc=no
+diff --git a/configure.in b/configure.in
+index 7992115..efc9612 100644
+--- a/configure.in
++++ b/configure.in
+@@ -1660,7 +1660,7 @@ dnl cross-platform since the gcc used can be a cross compiler.  Without
+ dnl introducing new options this is not easily doable.  Instead use a tool
+ dnl which always is cross-platform: readelf.  To detect whether -z combreloc
+ dnl look for a section named .rel.dyn.
+-    if readelf -S conftest.so | grep '\.rel\(a\|\)\.dyn' > /dev/null; then
++    if readelf -S conftest.so | grep '\.\(rel\|rela\)\.dyn' > /dev/null; then
+       libc_cv_z_combreloc=yes
+     else
+       libc_cv_z_combreloc=no

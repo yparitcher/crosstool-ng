@@ -175,7 +175,7 @@ config LIBC_GLIBC_V_2_13
     prompt "2.13 (OBSOLETE)"
     depends on OBSOLETE
 
-# This version did not have glibc-ports addon released, I rolled one myself
+# This version did not have a glibc-ports addon released, I rolled one myself
 config LIBC_GLIBC_V_2_12_2
     bool
     prompt "2.12.2 (OBSOLETE)"
@@ -185,6 +185,12 @@ config LIBC_GLIBC_V_2_12_2
 config LIBC_GLIBC_V_2_12_1
     bool
     prompt "2.12.1 (OBSOLETE)"
+    depends on OBSOLETE
+
+# This version did not have a glibc-ports addon released, I rolled one myself
+config LIBC_GLIBC_V_2_11_3
+    bool
+    prompt "2.11.3 (OBSOLETE)"
     depends on OBSOLETE
 
 config LIBC_GLIBC_V_2_9
@@ -242,6 +248,7 @@ config LIBC_VERSION
     default "2.13" if LIBC_GLIBC_V_2_13
     default "2.12.2" if LIBC_GLIBC_V_2_12_2
     default "2.12.1" if LIBC_GLIBC_V_2_12_1
+    default "2.11.3" if LIBC_GLIBC_V_2_11_3
     default "2.9" if LIBC_GLIBC_V_2_9
     default "2.5.1" if LIBC_GLIBC_V_2_5_1
 
