@@ -546,7 +546,7 @@ do_gcc_core_backend() {
     # that ${cflags} may refer either to build or host CFLAGS; they are provided
     # by the caller.
     cflags_for_build="${CT_CFLAGS_FOR_BUILD}"
-    cflags_for_target="${CT_ALL_TARGET_CFLAGS}"
+    cflags_for_target="${CT_TARGET_CFLAGS}"
 
     # Clang's default bracket-depth is 256, and building GCC
     # requires somewhere between 257 and 512.
@@ -588,7 +588,7 @@ do_gcc_core_backend() {
     LDFLAGS="${core_LDFLAGS[*]}"                       \
     CFLAGS_FOR_TARGET="${cflags_for_target}"           \
     CXXFLAGS_FOR_TARGET="${cflags_for_target}"         \
-    LDFLAGS_FOR_TARGET="${CT_ALL_TARGET_LDFLAGS}"      \
+    LDFLAGS_FOR_TARGET="${CT_TARGET_LDFLAGS}"          \
     ${CONFIG_SHELL}                                    \
     "${CT_SRC_DIR}/gcc/configure"                      \
         --build=${CT_BUILD}                            \
@@ -1156,9 +1156,9 @@ do_gcc_backend() {
     CXXFLAGS="${cflags}"                               \
     CXXFLAGS_FOR_BUILD="${cflags_for_build}"           \
     LDFLAGS="${final_LDFLAGS[*]}"                      \
-    CFLAGS_FOR_TARGET="${CT_ALL_TARGET_CFLAGS}"        \
-    CXXFLAGS_FOR_TARGET="${CT_ALL_TARGET_CFLAGS}"      \
-    LDFLAGS_FOR_TARGET="${CT_ALL_TARGET_LDFLAGS}"      \
+    CFLAGS_FOR_TARGET="${CT_TARGET_CFLAGS}"            \
+    CXXFLAGS_FOR_TARGET="${CT_TARGET_CFLAGS}"          \
+    LDFLAGS_FOR_TARGET="${CT_TARGET_LDFLAGS}"          \
     ${CONFIG_SHELL}                                    \
     "${CT_SRC_DIR}/gcc/configure"                      \
         --build=${CT_BUILD}                            \
