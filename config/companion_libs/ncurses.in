@@ -6,6 +6,10 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config NCURSES_V_6_2
+    bool
+    prompt "6.2"
+
 config NCURSES_V_6_1
     bool
     prompt "6.1"
@@ -16,6 +20,7 @@ config NCURSES_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "6.2" if NCURSES_V_6_2
     default "6.1" if NCURSES_V_6_1
 
 config NCURSES_NEW_ABI
