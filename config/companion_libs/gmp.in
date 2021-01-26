@@ -6,9 +6,9 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
-config GMP_V_6_2_0
+config GMP_V_6_2_1
     bool
-    prompt "6.2.0"
+    prompt "6.2.1"
     select GMP_5_0_2_or_later
 
 config GMP_V_6_1_2
@@ -55,7 +55,7 @@ config GMP_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
-    default "6.2.0" if GMP_V_6_2_0
+    default "6.2.1" if GMP_V_6_2_1
     default "6.1.2" if GMP_V_6_1_2
     default "6.1.0" if GMP_V_6_1_0
     default "6.0.0a" if GMP_V_6_0_0
