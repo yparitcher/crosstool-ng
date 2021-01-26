@@ -16,6 +16,13 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config ISL_V_0_23
+    bool
+    prompt "0.23"
+    depends on EXPERIMENTAL # Not officially recommended by GCC
+    depends on CC_GCC_5_or_later
+    select ISL_V_0_16_or_later
+
 config ISL_V_0_22_1
     bool
     prompt "0.22.1"
@@ -112,6 +119,7 @@ config ISL_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "0.23" if ISL_V_0_23
     default "0.22.1" if ISL_V_0_22_1
     default "0.21" if ISL_V_0_21
     default "0.20" if ISL_V_0_20
