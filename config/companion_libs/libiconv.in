@@ -6,6 +6,10 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
+config LIBICONV_V_1_16
+    bool
+    prompt "1.16"
+
 config LIBICONV_V_1_15
     bool
     prompt "1.15"
@@ -20,5 +24,6 @@ config LIBICONV_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
+    default "1.16" if LIBICONV_V_1_16
     default "1.15" if LIBICONV_V_1_15
     default "1.14" if LIBICONV_V_1_14
