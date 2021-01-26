@@ -9,13 +9,17 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
-config AUTOMAKE_V_1_15
+config AUTOMAKE_V_1_16_3
     bool
-    prompt "1.15"
+    prompt "1.16.3"
 
-config AUTOMAKE_V_1_14
+config AUTOMAKE_V_1_15_1
     bool
-    prompt "1.14 (OBSOLETE)"
+    prompt "1.15.1"
+
+config AUTOMAKE_V_1_14_1
+    bool
+    prompt "1.14.1 (OBSOLETE)"
     depends on OBSOLETE
 
 config AUTOMAKE_V_1_11_6
@@ -34,7 +38,8 @@ config AUTOMAKE_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
-    default "1.15" if AUTOMAKE_V_1_15
-    default "1.14" if AUTOMAKE_V_1_14
+    default "1.16.3" if AUTOMAKE_V_1_16_3
+    default "1.15.1" if AUTOMAKE_V_1_15_1
+    default "1.14.1" if AUTOMAKE_V_1_14_1
     default "1.11.6" if AUTOMAKE_V_1_11_6
     default "1.11.1" if AUTOMAKE_V_1_11_1
