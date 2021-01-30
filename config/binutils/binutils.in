@@ -66,7 +66,7 @@ config BINUTILS_V_2_36
     depends on EXPERIMENTAL
     select BINUTILS_2_30_or_later
 
-config BINUTILS_V_2_35.1
+config BINUTILS_V_2_35_1
     bool
     prompt "2.35.1 (EXPERIMENTAL)"
     depends on EXPERIMENTAL
