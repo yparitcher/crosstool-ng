@@ -60,15 +60,15 @@ choice
 # Don't remove next line
 # CT_INSERT_VERSION_BELOW
 
-config BINUTILS_V_2_36
+config BINUTILS_V_2_36_1
     bool
-    prompt "2.36 (EXPERIMENTAL)"
+    prompt "2.36.1 (EXPERIMENTAL)"
     depends on EXPERIMENTAL
     select BINUTILS_2_30_or_later
 
-config BINUTILS_V_2_35_1
+config BINUTILS_V_2_35_2
     bool
-    prompt "2.35.1 (EXPERIMENTAL)"
+    prompt "2.35.2 (EXPERIMENTAL)"
     depends on EXPERIMENTAL
     select BINUTILS_2_30_or_later
 
@@ -169,8 +169,8 @@ config BINUTILS_VERSION
     string
 # Don't remove next line
 # CT_INSERT_VERSION_STRING_BELOW
-    default "2.36" if BINUTILS_V_2_36
-    default "2.35.1" if BINUTILS_V_2_35_1
+    default "2.36.1" if BINUTILS_V_2_36_1
+    default "2.35.2" if BINUTILS_V_2_35_2
     default "2.34" if BINUTILS_V_2_34
     default "2.33.1" if BINUTILS_V_2_33_1
     default "2.32" if BINUTILS_V_2_32
